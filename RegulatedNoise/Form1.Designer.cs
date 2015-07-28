@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.rbSortByDistance = new System.Windows.Forms.RadioButton();
@@ -326,16 +326,19 @@
             this.label11 = new System.Windows.Forms.Label();
             this.tabWebserver = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtWebserverPort = new System.Windows.Forms.TextBox();
-            this.cbInterfaces = new System.Windows.Forms.ComboBox();
-            this.label71 = new System.Windows.Forms.Label();
-            this.cbStartWebserverOnLoad = new System.Windows.Forms.CheckBox();
+            this.cbWebserverType = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.webServerSettings = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.tbBackgroundColour = new System.Windows.Forms.TextBox();
             this.tbForegroundColour = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.cbColourScheme = new System.Windows.Forms.ComboBox();
+            this.txtWebserverPort = new System.Windows.Forms.TextBox();
+            this.cbInterfaces = new System.Windows.Forms.ComboBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.cbStartWebserverOnLoad = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.bStart = new System.Windows.Forms.Button();
@@ -454,6 +457,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbOriginalImage)).BeginInit();
             this.tabWebserver.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.webServerSettings.SuspendLayout();
             this.tabEDDN.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabSettings.SuspendLayout();
@@ -2428,14 +2432,14 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(210, 224);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
@@ -2453,14 +2457,14 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
             this.chart2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart2.Location = new System.Drawing.Point(0, 0);
             this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.Name = "Series1";
-            this.chart2.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Name = "Series1";
+            this.chart2.Series.Add(series4);
             this.chart2.Size = new System.Drawing.Size(210, 269);
             this.chart2.TabIndex = 6;
             this.chart2.Text = "chart2";
@@ -3884,16 +3888,13 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.cbWebserverType);
+            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Controls.Add(this.webServerSettings);
             this.groupBox1.Controls.Add(this.txtWebserverPort);
             this.groupBox1.Controls.Add(this.cbInterfaces);
             this.groupBox1.Controls.Add(this.label71);
             this.groupBox1.Controls.Add(this.cbStartWebserverOnLoad);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.tbBackgroundColour);
-            this.groupBox1.Controls.Add(this.tbForegroundColour);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.cbColourScheme);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.bStart);
@@ -3905,6 +3906,98 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Webserver";
+            // 
+            // cbWebserverType
+            // 
+            this.cbWebserverType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbWebserverType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbWebserverType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbWebserverType.FormattingEnabled = true;
+            this.cbWebserverType.Items.AddRange(new object[] {
+            "simple",
+            "bootstrap"});
+            this.cbWebserverType.Location = new System.Drawing.Point(103, 224);
+            this.cbWebserverType.Name = "cbWebserverType";
+            this.cbWebserverType.Size = new System.Drawing.Size(121, 21);
+            this.cbWebserverType.TabIndex = 18;
+            this.cbWebserverType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(8, 227);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(89, 13);
+            this.label31.TabIndex = 17;
+            this.label31.Text = "Webserver Type:";
+            // 
+            // webServerSettings
+            // 
+            this.webServerSettings.Controls.Add(this.label17);
+            this.webServerSettings.Controls.Add(this.label16);
+            this.webServerSettings.Controls.Add(this.tbBackgroundColour);
+            this.webServerSettings.Controls.Add(this.tbForegroundColour);
+            this.webServerSettings.Controls.Add(this.label15);
+            this.webServerSettings.Controls.Add(this.cbColourScheme);
+            this.webServerSettings.Location = new System.Drawing.Point(6, 258);
+            this.webServerSettings.Name = "webServerSettings";
+            this.webServerSettings.Size = new System.Drawing.Size(1015, 66);
+            this.webServerSettings.TabIndex = 16;
+            this.webServerSettings.TabStop = false;
+            this.webServerSettings.Text = "Webserver Settings";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(224, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 13);
+            this.label17.TabIndex = 18;
+            this.label17.Text = "Background";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(129, 17);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(61, 13);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "Foreground";
+            // 
+            // tbBackgroundColour
+            // 
+            this.tbBackgroundColour.Location = new System.Drawing.Point(227, 32);
+            this.tbBackgroundColour.Name = "tbBackgroundColour";
+            this.tbBackgroundColour.Size = new System.Drawing.Size(87, 20);
+            this.tbBackgroundColour.TabIndex = 16;
+            // 
+            // tbForegroundColour
+            // 
+            this.tbForegroundColour.Location = new System.Drawing.Point(134, 33);
+            this.tbForegroundColour.Name = "tbForegroundColour";
+            this.tbForegroundColour.Size = new System.Drawing.Size(87, 20);
+            this.tbForegroundColour.TabIndex = 15;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 16);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(79, 13);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Colour Scheme";
+            // 
+            // cbColourScheme
+            // 
+            this.cbColourScheme.FormattingEnabled = true;
+            this.cbColourScheme.Items.AddRange(new object[] {
+            "Black on White",
+            "White on Black",
+            "Orange on Black"});
+            this.cbColourScheme.Location = new System.Drawing.Point(7, 32);
+            this.cbColourScheme.Name = "cbColourScheme";
+            this.cbColourScheme.Size = new System.Drawing.Size(121, 21);
+            this.cbColourScheme.TabIndex = 13;
             // 
             // txtWebserverPort
             // 
@@ -3944,62 +4037,6 @@
             this.cbStartWebserverOnLoad.Text = "Start Webserver automatically when this app is started";
             this.cbStartWebserverOnLoad.UseVisualStyleBackColor = true;
             this.cbStartWebserverOnLoad.CheckedChanged += new System.EventHandler(this.cbStartWebserverOnLoad_CheckedChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(226, 215);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(65, 13);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "Background";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(131, 216);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(61, 13);
-            this.label16.TabIndex = 11;
-            this.label16.Text = "Foreground";
-            // 
-            // tbBackgroundColour
-            // 
-            this.tbBackgroundColour.Location = new System.Drawing.Point(229, 231);
-            this.tbBackgroundColour.Name = "tbBackgroundColour";
-            this.tbBackgroundColour.Size = new System.Drawing.Size(87, 20);
-            this.tbBackgroundColour.TabIndex = 10;
-            this.tbBackgroundColour.TextChanged += new System.EventHandler(this.tbBackgroundColour_TextChanged);
-            // 
-            // tbForegroundColour
-            // 
-            this.tbForegroundColour.Location = new System.Drawing.Point(136, 232);
-            this.tbForegroundColour.Name = "tbForegroundColour";
-            this.tbForegroundColour.Size = new System.Drawing.Size(87, 20);
-            this.tbForegroundColour.TabIndex = 9;
-            this.tbForegroundColour.TextChanged += new System.EventHandler(this.tbForegroundColour_TextChanged);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 215);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(79, 13);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Colour Scheme";
-            // 
-            // cbColourScheme
-            // 
-            this.cbColourScheme.FormattingEnabled = true;
-            this.cbColourScheme.Items.AddRange(new object[] {
-            "Black on White",
-            "White on Black",
-            "Orange on Black"});
-            this.cbColourScheme.Location = new System.Drawing.Point(9, 231);
-            this.cbColourScheme.Name = "cbColourScheme";
-            this.cbColourScheme.Size = new System.Drawing.Size(121, 21);
-            this.cbColourScheme.TabIndex = 7;
-            this.cbColourScheme.SelectedIndexChanged += new System.EventHandler(this.cbColourScheme_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -4768,6 +4805,8 @@
             this.tabWebserver.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.webServerSettings.ResumeLayout(false);
+            this.webServerSettings.PerformLayout();
             this.tabEDDN.ResumeLayout(false);
             this.tabEDDN.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -4839,12 +4878,6 @@
         private System.Windows.Forms.Label lblURL;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox tbBackgroundColour;
-        private System.Windows.Forms.TextBox tbForegroundColour;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.ComboBox cbColourScheme;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage tabCommandersLog;
         private System.Windows.Forms.Label label22;
@@ -5161,8 +5194,15 @@
         private System.Windows.Forms.RadioButton rbUserID;
         internal System.Windows.Forms.TextBox txtCmdrsName;
         private System.Windows.Forms.CheckBox cbEDDNAutoListen;
-
-        
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.GroupBox webServerSettings;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox tbBackgroundColour;
+        private System.Windows.Forms.TextBox tbForegroundColour;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cbColourScheme;
+        private System.Windows.Forms.ComboBox cbWebserverType;
     }
 }
 

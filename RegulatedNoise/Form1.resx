@@ -126,6 +126,17 @@
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>557, 17</value>
   </metadata>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Tips:
+
+1) You DO NOT need to run this app as Administrator if you want to use the Webserver;
+2) You'll probably need to go to Windows Firewall and  create a rule to open port 8080 for incoming connections;
+3) Make sure you select the correct IP address above, for the local network you want to use;
+4) Click the link above to launch the page in a local browser;
+5) The data is organised on the page just as you organise it in the app.
+
+</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1530,17 +1541,6 @@
         XtP04/8BzeU94fqo/SoLpP6bHadw4u2ZuZNLb+dfB1fSkiVyZ/j/UVRjLazI1fWg2Jz7wN3gnrxsbGsr
         7nH/WMghV+pt6FtXtdNKttlEWQs8W0UfedqUskB/FX3kXaCUBbbPu+dDFxShuRga2Pnw5U7Tl/r+ewiC
         E38FHr4WWU6iAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Tips:
-
-1) You DO NOT need to run this app as Administrator if you want to use the Webserver;
-2) You'll probably need to go to Windows Firewall and  create a rule to open port 8080 for incoming connections;
-3) Make sure you select the correct IP address above, for the local network you want to use;
-4) Click the link above to launch the page in a local browser;
-5) The data is organised on the page just as you organise it in the app.
-
 </value>
   </data>
   <data name="label50.Text" xml:space="preserve">

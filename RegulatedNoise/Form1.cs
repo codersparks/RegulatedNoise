@@ -21,6 +21,7 @@ using RegulatedNoise.Enums_and_Utility_Classes;
 using Microsoft.Win32;
 using System.ComponentModel;
 using RegulatedNoise.EDDB_Data;
+using RegulatedNoise.Webserver;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
@@ -164,6 +165,8 @@ namespace RegulatedNoise
                 _Splash.InfoAdd("load settings...");
                 SetProductPath();
                 _logger.Log("  - product path set");
+                SetWebserverType(RegulatedNoiseSettings.WebserverType);
+                _logger.Log("  - Webserver type set to: " + RegulatedNoiseSettings.WebserverType);
                 _Splash.InfoChange("load settings...<OK>");
 
                 SetProductAppDataPath();
@@ -775,6 +778,29 @@ namespace RegulatedNoise
             RegulatedNoiseSettings.ProductsPath = path;
         }
 
+        private void SetWebserverType(String type)
+        {
+
+            _logger.Log("Attempting to set Webserver to type: " + type);
+
+            cbWebserverType.SelectedItem = type;
+            switch (type)
+            {
+                case "simple":
+                    
+                    sws = new WebserverAdapter(WebserverType.SIMPLE);
+                    break;
+                case "bootstrap":
+                    sws = new WebserverAdapter(WebserverType.BOOTSTRAP);
+                    break;
+                default:
+                    _logger.Log("Don't know how to create webserver of type: " + type + " falling back to simple");
+                    cbWebserverType.SelectedItem = "simple";
+                    sws = new WebserverAdapter();
+                    break;
+            };
+        }
+
         private string getProductAppDataPathAutomatically()
         {
             string[] autoSearchdir = { Environment.GetEnvironmentVariable("LOCALAPPDATA") };
@@ -1258,7 +1284,7 @@ namespace RegulatedNoise
             SaveSettings();
 
             if (sws.Running)
-                sws.Stop();
+                stopWebServer();
         }
 
         public void SaveSettings()
@@ -2669,25 +2695,13 @@ namespace RegulatedNoise
         }
 
         /// Webserver functionality
-        private SimpleWebserver sws = new SimpleWebserver();
+        private WebserverAdapter sws = null;
 
         private void bStart_Click(object sender, EventArgs e)
         {
             try
             {
-                //if (ws == null)
-                //{
-                //    ws = new WebServer((new[] { "http://" + cbInterfaces.SelectedItem.ToString() + ":8080/" }), SendResponse);
-                //    ws.Start(); //  If the service was already started, the call has no effect
-                //    ws.Run();
-                //}
-
-                //sws = new  SimpleWebserver(  WebServer((new[] { "http://" + cbInterfaces.SelectedItem.ToString() + ":8080/" }), SendResponse);
-
-                IPAddress ip = IPAddress.Parse(cbInterfaces.SelectedItem.ToString());
-
-                sws.Start(ip, Int32.Parse(txtWebserverPort.Text) , 5, "", this);
-                //                    = new WebServer((new[] { "http://" + cbInterfaces.SelectedItem.ToString() + ":8080/" }), SendResponse);
+                startWebServer();
                 UpdateUrl();
             }
             catch (Exception ex)
@@ -2703,9 +2717,21 @@ namespace RegulatedNoise
             }
         }
 
-        private void bStop_Click(object sender, EventArgs e)
+        private void startWebServer()
+        {
+            IPAddress ip = IPAddress.Parse(cbInterfaces.SelectedItem.ToString());
+
+            sws.Start(ip, Int32.Parse(txtWebserverPort.Text), 5, "", this);
+        }
+
+        private void stopWebServer()
         {
             sws.Stop();
+        }
+
+        private void bStop_Click(object sender, EventArgs e)
+        {
+            stopWebServer();
             UpdateUrl();
         }
 
@@ -8064,6 +8090,37 @@ namespace RegulatedNoise
         private void llVisitUpdate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(((LinkLabel)sender).Text);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+
+            string type = (string) comboBox.SelectedItem;
+
+            bool wasRunning = false;
+
+            if(type != RegulatedNoiseSettings.WebserverType && sws.Running)
+            {
+                _logger.Log("Detected change to webserver type and server is running, stopping...");
+                wasRunning = true;
+                stopWebServer();
+            }
+
+            SetWebserverType(type);
+
+            RegulatedNoiseSettings.WebserverType = type;
+
+            _logger.Log("Selected webserver type changed to: " + type);
+
+            if(wasRunning)
+            {
+                _logger.Log("Server was running before changing type therefore restarting...");
+                startWebServer();
+                _logger.Log("...Server restarted");
+
+            }
+
         }
 
         private void rbUserID_CheckedChanged(object sender, EventArgs e)

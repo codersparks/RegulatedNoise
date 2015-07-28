@@ -69,6 +69,7 @@ namespace RegulatedNoise
         public string ProductAppData = ""; //2nd location for game configuration files
         public string WebserverIpAddress = "";
         public string WebserverPort = "8080";
+        public string WebserverType = "simple";
         public bool StartWebserverOnLoad = false;
         public string WebserverBackgroundColor = "#FFFFFF";
         public string WebserverForegroundColor = "#000000";

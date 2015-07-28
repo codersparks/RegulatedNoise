@@ -9,12 +9,19 @@ using System.Net.Sockets;
 using System.Reflection;
 
 
-namespace RegulatedNoise
+namespace RegulatedNoise.Webserver
 {
     // taken from http://www.codeproject.com/Articles/452052/Build-Your-Own-Web-Server
-    class SimpleWebserver
+    class BootstrapWebserver : IWebserver
     {
-        public bool Running = false; // Is it running?
+        private bool isRunning = false; // Is it running?
+
+        public bool Running {
+            get {
+                return isRunning;
+            }
+        }
+
 
         private const int timeout = 8; // Time limit for data transfers.
         private readonly Encoding _charEncoder = Encoding.UTF8; // To encode string
@@ -49,9 +56,10 @@ namespace RegulatedNoise
             _callingForm = callingForm;
 
             _logger = new SingleThreadLogger(ThreadLoggerType.Webserver);
+            _logger.Log("Starting new Bootstrap Webserver");
 
-            if (Running) return false; // If it is already running, exit.
-            Running = true;
+            if (isRunning) return false; // If it is already running, exit.
+            isRunning = true;
             //try
             {
                 // A tcp/ip socket (ipv4)
@@ -70,7 +78,7 @@ namespace RegulatedNoise
             // and create new threads to handle them.
             _requestListenerT = new Thread(() =>
             {
-                while (Running)
+                while (isRunning)
                 {
                     Socket clientSocket;
                     try
@@ -119,9 +127,9 @@ namespace RegulatedNoise
 
         public void Stop()
         {
-            if (Running)
+            if (isRunning)
             {
-                Running = false;
+                isRunning = false;
                 try
                 {
                     _serverSocket.Close();
@@ -179,7 +187,7 @@ namespace RegulatedNoise
                     _callingForm.GenericSingleParameterMessage(requestedUrl, AppDelegateType.ChangeGridSort);
                     SendTradeDataPage(clientSocket);
                     break;
-                case "\\": sendResponse(clientSocket, "<HTML>" + BodyTag + "<font size=\"12\">RegulatedNoise</font><br><br><form action=\"/ocrpoll\"><input type=\"submit\" style=\"font-size: 44pt\" value=\"OCR Corrections\"></form><br><form action=\"/tradedata\"><input type=\"submit\" style=\"font-size: 44pt\" value=\"Trade Data\"></form><br><form action=\"/enternotedata\"><input type=\"submit\" style=\"font-size: 44pt\" value=\"Add Note\"></form></BODY></HTML>", "200 OK", "text/html"); break;
+                case "\\": sendResponse(clientSocket, "<HTML><HEAD><meta name=\"author\" content=\"Bootstrap\"></HEAD>" + BodyTag + "<font size=\"12\">Bootstrap RegulatedNoise</font><br><br><form action=\"/ocrpoll\"><input type=\"submit\" style=\"font-size: 44pt\" value=\"OCR Corrections\"></form><br><form action=\"/tradedata\"><input type=\"submit\" style=\"font-size: 44pt\" value=\"Trade Data\"></form><br><form action=\"/enternotedata\"><input type=\"submit\" style=\"font-size: 44pt\" value=\"Add Note\"></form></BODY></HTML>", "200 OK", "text/html"); break;
                 case "\\latestocrimage.bmp":        ReturnCurrentOcrImage(clientSocket, extension); break;
                 case "\\createnote":
                 case "\\createnote.html":
@@ -454,5 +462,18 @@ namespace RegulatedNoise
     public string BodyTag { get { return @"<body " + StyleTag + " alink=" + ForegroundColour + " vlink=" + ForegroundColour + " link=" + ForegroundColour + ">"; } }
 
     public string StyleTag { get { return @"style=""color:" + ForegroundColour + @"; background-color:" + BackgroundColour + @""""; } }
+
+        public string styleName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
